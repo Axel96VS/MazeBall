@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.Toast;
 
 public class Opciones extends AppCompatActivity {
     public static final String PREFS_NAME = "FitxerPrefs";
@@ -21,49 +23,53 @@ public class Opciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opciones);
 
+
         final SharedPreferences config = getSharedPreferences(PREFS_NAME, 0);
-        bSwitch.setEnabled(config.getBoolean("switchSound", true));
-        eRB.setChecked(config.getBoolean("easy", true));
-        mRB.setChecked(config.getBoolean("medium", false));
-        hRB.setChecked(config.getBoolean("hard", false));
+
+        Intent i = getIntent();
 
         bSwitch= (Switch) findViewById(R.id.switchsonido);
         bSwitch.setEnabled(true);
         eRB = (RadioButton) findViewById(R.id.dif1);
         eRB.setChecked(true);
-        eRB.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if(!eRB.isChecked()){
-                    eRB.setChecked(true);
-                    mRB.setChecked(false);
-                    hRB.setChecked(false);
-                }
-            }
-        });
         mRB = (RadioButton) findViewById(R.id.dif2);
-        mRB.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if(!mRB.isChecked()){
-                    eRB.setChecked(false);
-                    mRB.setChecked(true);
-                    hRB.setChecked(false);
-                }
-            }
-        });
         hRB = (RadioButton) findViewById(R.id.dif3);
-        hRB.setOnClickListener(new View.OnClickListener(){
+        SaveButton = (Button) findViewById(R.id.saveOptions);
+        RadioGroup rg = (RadioGroup) findViewById(R.id.RG1);
+
+
+        bSwitch.setEnabled(config.getBoolean("switchSound", true));
+        eRB.setChecked(config.getBoolean("easy", true));
+        mRB.setChecked(config.getBoolean("medium", false));
+        hRB.setChecked(config.getBoolean("hard", false));
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
             @Override
-            public void onClick(View v){
-                if(!hRB.isChecked()){
-                    eRB.setChecked(false);
-                    mRB.setChecked(false);
-                    hRB.setChecked(true);
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                switch(checkedId)
+                {
+                    case R.id.dif1:
+                        eRB.setChecked(true);
+                        mRB.setChecked(false);
+                        hRB.setChecked(false);
+                        break;
+                    case R.id.dif2:
+                        eRB.setChecked(false);
+                        mRB.setChecked(true);
+                        hRB.setChecked(false);
+                        break;
+                    case R.id.dif3:
+                        eRB.setChecked(false);
+                        mRB.setChecked(false);
+                        hRB.setChecked(true);
+                        break;
                 }
             }
         });
-        SaveButton = (Button) findViewById(R.id.saveOptions);
+
+
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,8 +80,8 @@ public class Opciones extends AppCompatActivity {
                 editor.putBoolean("hard", hRB.isChecked());
                 editor.commit();
 
-                //Intent i2 = new Intent(Opciones.this, MainActivity.class);
-                //startActivity(i2);
+                Toast.makeText(Opciones.this, "Options saved", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
