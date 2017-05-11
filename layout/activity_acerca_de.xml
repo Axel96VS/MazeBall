@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mazeball.AcercaDe"
-    android:background="@mipmap/fondo_menu">
+    android:background="@mipmap/fondomenu2">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,9 +22,34 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textColor="#FFFFFF"
-        android:text="Esta aplicacion es el resultado del proyecto de la UF3 de Android, hecho por Aarón Prades y Axel Valverde"
-        android:layout_below="@+id/titulo"
-        android:textAlignment="center"
-        android:layout_marginTop="108dp" />
+        android:text="@string/txtGithub"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="monospace"
+        android:clickable="true"
+        android:text="https://github.com/Axel96VS/MazeBall"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:layout_marginTop="530dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:textColor="#FFFFFF"
+        android:text="v1.0"
+        android:layout_marginTop="480dp"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
