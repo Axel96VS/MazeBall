@@ -22,11 +22,9 @@ public class Ball extends View{
     public int radio(){
         return this.r;
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        // Se dibuja un circulo en las coordenadas indicadas
         canvas.drawCircle(x, y, r, mPaint);
     }
 }
