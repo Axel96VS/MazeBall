@@ -34,7 +34,7 @@ public class Opciones extends AppCompatActivity {
         eRB = (RadioButton) findViewById(R.id.dif1);
         eRB.setChecked(true);
         mRB = (RadioButton) findViewById(R.id.dif2);
-        hRB = (RadioButton) findViewById(R.id.dif3);
+        //hRB = (RadioButton) findViewById(R.id.dif3);
         SaveButton = (Button) findViewById(R.id.saveOptions);
         RadioGroup rg = (RadioGroup) findViewById(R.id.RG1);
 
@@ -42,7 +42,7 @@ public class Opciones extends AppCompatActivity {
         bSwitch.setChecked(config.getBoolean("switchSound", true));
         eRB.setChecked(config.getBoolean("easy", true));
         mRB.setChecked(config.getBoolean("medium", false));
-        hRB.setChecked(config.getBoolean("hard", false));
+        //hRB.setChecked(config.getBoolean("hard", false));
 
 
         bSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -66,18 +66,18 @@ public class Opciones extends AppCompatActivity {
                     case R.id.dif1:
                         eRB.setChecked(true);
                         mRB.setChecked(false);
-                        hRB.setChecked(false);
+                       // hRB.setChecked(false);
                         break;
                     case R.id.dif2:
                         eRB.setChecked(false);
                         mRB.setChecked(true);
-                        hRB.setChecked(false);
+                       // hRB.setChecked(false);
                         break;
-                    case R.id.dif3:
+                   /* case R.id.dif3:
                         eRB.setChecked(false);
                         mRB.setChecked(false);
                         hRB.setChecked(true);
-                        break;
+                        break;*/
                 }
             }
         });
@@ -90,7 +90,7 @@ public class Opciones extends AppCompatActivity {
                 editor.putBoolean("switchSound", bSwitch.isChecked());
                 editor.putBoolean("easy", eRB.isChecked());
                 editor.putBoolean("medium", mRB.isChecked());
-                editor.putBoolean("hard", hRB.isChecked());
+                //editor.putBoolean("hard", hRB.isChecked());
                 editor.commit();
 
                 Toast.makeText(Opciones.this, "Options saved. Changes will be aplied at return to menu", Toast.LENGTH_SHORT).show();
