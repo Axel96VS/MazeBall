@@ -3,10 +3,15 @@ package com.example.mazeball;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Musica del juego
         mediaPlayer = MediaPlayer.create(this,R.raw.theme);
         mediaPlayer.start();
 
@@ -42,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
         sound = config.getBoolean("switchSound", true);
         easy = config.getBoolean("easy", true);
         medium = config.getBoolean("medium", false);
-        hard = config.getBoolean("hard", false);
+        //hard = config.getBoolean("hard", false);
 
-        // Si seleccionamos que queremos musica en Opciones, se activara la musica
-        // del juego, y hasta que no seleccionemos lo contrario, no parara
+        //control de la musica durante el juego
         if(sound) {
             if(!mediaPlayer.isPlaying()){
                 mediaPlayer.setLooping(true);
@@ -59,26 +64,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // IMPLEMENTAMOS LOS onClick() A LOS BOTONES
-
-        // El boton play redireccionara al usuario a la partida, habiendo
-        // seleccionado un laberinto anteriormente (estando el 1 por defecto)
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = i = new Intent(MainActivity.this, Maze.class);
+                Intent i = new Intent(MainActivity.this, Maze.class);
+                //Segun el nivel escogido en opciones, se seleccionara un mapa u otro
                 if(easy){
-                    i.putExtra("level", "Mazo 1");
+                    i.putExtra("level", "easy");
                 }else if(medium){
-                    i.putExtra("level","Mazo 2");
+                    i.putExtra("level","medium");
                 }/*else{
                     //i = new Intent(MainActivity.this, Level3.class);
                 }*/
                 startActivity(i);
+                finish();
             }
         });
-
-        // El boton de opciones redireccionara a la pantalla de Opciones
         options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        // El boton de acercade redireccionara a la pantalla de Acerca De
         acercade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        // El boton de salir hace que se apague la aplicacion
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +102,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 }
