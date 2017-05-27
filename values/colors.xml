@@ -2,9 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FFFFFF</color>
     <color name="gris">#777777</color>
-    <color name="game_bg">#000000</color>
-    <color name="line">#ff0000</color>
-    <color name="position">#22ff00</color>
+    <color name="blanco">#FFFFFF</color>
 </resources>
